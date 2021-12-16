@@ -24,7 +24,7 @@ function HomePage(props) {
     return <MeetupList meetups={props.meetups} />
 }
 
-export async function getStaticProps() {
+export async function getStaticProps() { // better than getServerSideProps() because you have control on when to fetch data
     // fetch data from an API
     return {
         props: {
