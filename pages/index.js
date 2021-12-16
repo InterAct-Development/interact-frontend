@@ -29,7 +29,8 @@ export async function getStaticProps() {
     return {
         props: {
             meetups: DUMMY_MEETUPS
-        }
+        },
+        revalidate: 10 // timer for server request/s = wait 10secs to load
     };
 };
 
