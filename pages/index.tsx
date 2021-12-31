@@ -1,15 +1,24 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components';
+import { Flex } from '../styles/Mixins';
 
-const Title = styled.h1`
-  color: rgb(255, 0, 0);
+const Parent = styled.div`
+  ${Flex({ vertical: 'space-between', direction: 'row'})}
+`;
+
+const Child = styled.div`
+  height: 200px;
+  width: 200px;
+  background: var(--primaryColor);
 `;
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <Title>Next.js Application</Title>
-    </div>
+    <Parent>
+      <Child/>
+      <Child/>
+      <Child/>
+    </Parent>
   )
 }
 
