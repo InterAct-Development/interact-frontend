@@ -1,25 +1,37 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components';
 import { Flex } from '../styles/Mixins';
+import Link from 'next/link';
+import { Body } from '../layout/Body';
+import { Grid, GridItem } from '../layout/grid/Grid';
 
-const Parent = styled.div`
-  ${Flex({ vertical: 'space-between', direction: 'row'})}
+const Container = styled.div`
+  ${Flex}
 `;
 
 const Child = styled.div`
-  height: 200px;
-  width: 200px;
-  background: var(--primaryColor);
+  ${Flex({ direction: 'row' })};
+  gap: 10px;
 `;
 
 const Home: NextPage = () => {
   return (
-    <Parent>
-      <Child/>
-      <Child/>
-      <Child/>
-    </Parent>
+    <Body>
+      <Grid>
+        <GridItem>
+          <Container>
+            <h1>InterAct Home</h1>
+            <Child>
+            <Link passHref href="/register">
+              <button>Register</button>
+            </Link>
+              <button>Login</button>
+            </Child>
+          </Container>
+        </GridItem>
+      </Grid>
+    </Body>
   )
 }
 
-export default Home
+export default Home;

@@ -3,26 +3,32 @@ import Variables from './Variables';
 import Fonts from './Fonts';
 
 const Globals = createGlobalStyle`
-    ${Variables}
-    ${Fonts}
+${Variables}
+${Fonts}
 
-    html,
-    body {
+html,
+body {
     padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    }
+}
 
-    a {
+a {
     color: inherit;
     text-decoration: none;
-    }
+}
 
-    * {
+* {
     box-sizing: border-box;
-    }
+}
 
+main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 `;
 
 export default Globals;
