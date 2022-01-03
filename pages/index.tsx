@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Flex } from '../styles/Mixins';
 import Link from 'next/link';
 import { Body } from '../layout/Body';
 import { Grid, GridItem } from '../layout/grid/Grid';
+import Button from '@mui/material/Button';
 
 const Container = styled.div`
   ${Flex}
@@ -22,10 +23,10 @@ const Home: NextPage = () => {
           <Container>
             <h1>InterAct Home</h1>
             <Child>
-            <Link passHref href="/register">
-              <button>Register</button>
-            </Link>
-              <button>Login</button>
+              <Link passHref href="/auth/register">
+                <Button variant="contained">Register</Button>
+              </Link>
+                <Button variant="contained">Login</Button>
             </Child>
           </Container>
         </GridItem>

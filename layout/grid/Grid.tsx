@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const GridContainer = styled.section`
     display: grid;
@@ -24,7 +24,7 @@ interface GridProps {
 export const Grid: FC<GridProps> = ({ columns, children }) => {
     return(
         <GridContainer style={{ gridTemplateColumns: `repeat(${columns ?? 1}, 1fr)` }}>
-        {children}
+            {children}
         </GridContainer>
     )
 } 

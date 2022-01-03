@@ -1,8 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import { css } from "@emotion/react";
 import Variables from './Variables';
 import Fonts from './Fonts';
 
-const Globals = createGlobalStyle`
+export const theme = css`
 ${Variables}
 ${Fonts}
 
@@ -31,4 +31,4 @@ main {
 }
 `;
 
-export default Globals;
+export default theme;

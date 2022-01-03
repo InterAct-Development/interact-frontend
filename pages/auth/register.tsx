@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import styled from 'styled-components';
-import { Flex } from '../styles/Mixins';
+import styled from '@emotion/styled';
+import { Flex } from '../../styles/Mixins';
 
 const Parent = styled.div`
   ${Flex}

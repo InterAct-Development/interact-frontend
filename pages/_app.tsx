@@ -1,11 +1,12 @@
 import type { AppProps } from 'next/app'
-import Globals from '../styles/Globals';
+import { css, Global } from '@emotion/react'
+import { theme } from '../styles/Globals';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Globals />
+      <Global styles={() => css(theme)} />
       <Component {...pageProps} />
     </>
   )
