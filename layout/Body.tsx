@@ -1,9 +1,10 @@
 import React, { FC } from 'react'
+import MaterialNav from '../components/navigation/Navbar'
 
 export const Body: FC = ({ children }) => {
   return (
     <>
-        {/* Navigation Component here */}
+        <MaterialNav />
         <main>{children}</main>
         {/* Footer Component here */}
     </>

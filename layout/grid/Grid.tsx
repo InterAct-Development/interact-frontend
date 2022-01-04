@@ -21,7 +21,7 @@ interface GridProps {
 }
 
 // The grid itself. Call if a grid is needed
-export const Grid: FC<GridProps> = ({ columns, children }) => {
+export const AppGrid: FC<GridProps> = ({ columns, children }) => {
     return(
         <GridContainer style={{ gridTemplateColumns: `repeat(${columns ?? 1}, 1fr)` }}>
             {children}

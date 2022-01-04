@@ -29,6 +29,10 @@ main {
     flex-direction: column;
     justify-content: center;
 }
+
+section {
+    height: 100vh;
+}
 `;
 
 export default theme;

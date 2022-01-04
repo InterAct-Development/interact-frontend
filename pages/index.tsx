@@ -1,38 +1,36 @@
-import type { NextPage } from 'next'
-import styled from '@emotion/styled';
-import { Flex } from '../styles/Mixins';
-import Link from 'next/link';
-import { Body } from '../layout/Body';
-import { Grid, GridItem } from '../layout/grid/Grid';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import type { NextPage } from "next";
+import { Body } from "../layout/Body";
+import { AppGrid } from "../layout/grid/Grid";
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import styled from "@emotion/styled";
+import { Flex } from "../styles/Mixins";
 
-const Container = styled.div`
-  ${Flex}
-`;
-
-const Child = styled.div`
-  ${Flex({ direction: 'row' })};
-  gap: 10px;
+const FloatingActionButton = styled.div`
+  ${Flex({ horizontal: "flex-end", vertical: "end" })}
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 15px;
 `;
 
 const Home: NextPage = () => {
   return (
-    <Body>
-      <Grid>
-        <GridItem>
-          <Container>
-            <h1>InterAct Home</h1>
-            <Child>
-              <Link passHref href="/auth/register">
-                <Button variant="contained">Register</Button>
-              </Link>
-                <Button variant="contained">Login</Button>
-            </Child>
-          </Container>
-        </GridItem>
-      </Grid>
-    </Body>
-  )
-}
+    <>
+      <Body>
+        <section>
+          <AppGrid>
+            <FloatingActionButton>
+              <Fab color="primary" aria-label="add">
+                <AddIcon />
+              </Fab>
+            </FloatingActionButton>
+          </AppGrid>
+        </section>
+      </Body>
+    </>
+  );
+};
 
 export default Home;
