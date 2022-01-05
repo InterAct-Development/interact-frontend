@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getData } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import Router from "next/router";
+import { NextPage } from "next";
 
-const Profile = () => {
+const Profile: NextPage = () => {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
