@@ -7,7 +7,7 @@ import { AppGrid, GridItem } from "../../layout/grid/Grid";
 import { Card, Box } from "@mui/material";
 import UserForm from "../../components/form/Form";
 import Router from "next/router";
-import postData from "../../helpers/PostData";
+import postData from "../../helpers/Requests";
 
 const FullHeight = styled.div`
   height: 100vh;
@@ -21,9 +21,13 @@ export const registerAuth = (values: any, setSubmitting: Function) => {
     phone: values.phone,
     email: values.email,
     password: values.password,
-  }).then((_) => {
-    setSubmitting(false);
-    Router.push("/login");
+  }).then((res) => {
+    if (res.status == 201) {
+      setSubmitting(false);
+      Router.push("/auth/login");
+    } else {
+      setSubmitting(false);
+    }
   });
 };
 

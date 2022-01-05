@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Body } from '../../layout/Body';
 import { Button, AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
 import * as React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';

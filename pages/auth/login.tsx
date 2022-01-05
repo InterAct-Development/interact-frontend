@@ -6,8 +6,8 @@ import { Body } from "../../layout/Body";
 import { AppGrid, GridItem } from "../../layout/grid/Grid";
 import { Card, Box } from "@mui/material";
 import UserForm from "../../components/form/Form";
-import postData from "../../helpers/PostData";
-import Router from 'next/router';
+import postData from "../../helpers/Requests";
+import Router from "next/router";
 
 const FullHeight = styled.div`
   height: 100vh;
@@ -18,16 +18,23 @@ export const loginAuth = (values: any, setSubmitting: Function) =>
   postData("/users/login", {
     email: values.email,
     password: values.password,
-  }).then((data) => {
-    const userId = data["id"];
-    const token = data["token"];
+  }).then((res) => {
+    if (res.status == 200) {
+      res.json().then((data) => {
 
-    // Store our userId & JWT
-    localStorage.setItem("userId", userId);
-    localStorage.setItem("token", token);
+        const userId = data["id"];
+        const token = data["token"];
 
-    setSubmitting(false);
-    Router.push("/profile");
+        // Store our userId & JWT
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("token", token);
+
+        setSubmitting(false);
+        Router.push("/profile");
+      });
+    } else {
+      setSubmitting(false);
+    }
   });
 
 const Register: NextPage = () => {
