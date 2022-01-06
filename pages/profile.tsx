@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getData } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import Router from "next/router";
+import { AppContext } from "../helpers/Context";
+import { checkSSR } from "../helpers/checkSSR";
 
 const Profile = () => {
-  const userId = localStorage.getItem("userId");
-  const token = localStorage.getItem("token");
+  const authContext = useContext(AppContext);
+
+  const userId = authContext.state.userId !== null && authContext.state.userId;
+  const token = checkSSR ? localStorage.getItem("token") : null;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,10 +26,10 @@ const Profile = () => {
         });
       } else {
         console.log("Invalid token");
-        Router.push('/');
+        Router.push("/");
       }
     });
-  }, [userId, token]);
+  });
 
   return (
     <Body>

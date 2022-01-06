@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
 import { Formik, Form } from "formik";
 import validateForm from "./Validation";
 import { loginAuth } from "../../pages/auth/login";
+import { registerAuth } from "../../pages/auth/register";
 import {
   CardActions,
   CardContent,
@@ -11,7 +12,7 @@ import {
   TextField,
   CircularProgress,
 } from "@mui/material";
-import { registerAuth } from "../../pages/auth/register";
+import { AppContext } from "../../helpers/Context";
 
 const ErrorMessage = styled.div`
   color: red;
@@ -34,6 +35,8 @@ const UserForm = (isLogin?: boolean) => {
     password: "",
   };
 
+  const appContext = useContext(AppContext);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -42,7 +45,7 @@ const UserForm = (isLogin?: boolean) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         isLogin
-          ? loginAuth(values, setSubmitting)
+          ? loginAuth(appContext, values, setSubmitting)
           : registerAuth(values, setSubmitting);
       }}
     >

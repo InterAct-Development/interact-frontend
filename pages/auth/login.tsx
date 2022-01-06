@@ -14,20 +14,28 @@ const FullHeight = styled.div`
   ${Flex}
 `;
 
-export const loginAuth = (values: any, setSubmitting: Function) =>
+export const loginAuth = (
+  appContext: any,
+  values: any,
+  setSubmitting: Function
+) => {
   postData("/users/login", {
     email: values.email,
     password: values.password,
   }).then((res) => {
     if (res.status == 200) {
       res.json().then((data) => {
-
         const userId = data["id"];
         const token = data["token"];
+        delete data["token"];
 
-        // Store our userId & JWT
-        localStorage.setItem("userId", userId);
-        localStorage.setItem("token", token);
+        appContext.dispatch({
+          type: "LOGIN",
+          payload: {
+            token: token,
+            userId: userId,
+          },
+        });
 
         setSubmitting(false);
         Router.push("/profile");
@@ -36,8 +44,9 @@ export const loginAuth = (values: any, setSubmitting: Function) =>
       setSubmitting(false);
     }
   });
+};
 
-const Register: NextPage = () => {
+const Login: NextPage = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -61,4 +70,4 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register;
+export default Login;
