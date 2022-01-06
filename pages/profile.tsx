@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { getData } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import Router from "next/router";
-import { AppContext } from "../helpers/Context";
-import { checkSSR } from "../helpers/checkSSR";
+import { NextPage } from "next";
 
-const Profile = () => {
-  const authContext = useContext(AppContext);
-
-  const userId = authContext.state.userId !== null && authContext.state.userId;
-  const token = checkSSR ? localStorage.getItem("token") : null;
+const Profile: NextPage = () => {
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
