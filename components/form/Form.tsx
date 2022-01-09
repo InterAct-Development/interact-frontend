@@ -18,7 +18,7 @@ const ErrorMessage = styled.div`
   color: red;
 `;
 
-interface FormValues {
+export interface FormValues {
   name: string;
   age: number;
   phone: string;

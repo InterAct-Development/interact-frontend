@@ -1,36 +1,43 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getData } from "../helpers/Requests";
+import { apiRequest } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import Router from "next/router";
 import { AppContext } from "../helpers/Context";
-import { checkSSR } from "../helpers/checkSSR";
 import { NextPage } from "next";
 
 const Profile: NextPage = () => {
-  const authContext = useContext(AppContext);
-
-  const userId = authContext.state.userId !== null && authContext.state.userId;
-  const token = checkSSR ? localStorage.getItem("token") : null;
+  const appContext = useContext(AppContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    getData("/users/" + userId, token ?? "").then((res) => {
-      if (res.status == 200) {
-        res.json().then((data) => {
-          const name: string = data["user"]["name"];
-          const email: string = data["user"]["email"];
+  const badToken = () => {
+    console.log("Invalid token");
+    Router.push("/auth/login");
+  };
 
-          setName(name);
-          setEmail(email);
-        });
-      } else {
-        console.log("Invalid token");
-        Router.push("/");
-      }
-    });
-  });
+  // Look into React Router.pre()
+
+  useEffect(() => {
+    const { userId, token } = appContext.state;
+    // if (!token) badToken();
+
+    if (userId) {
+      apiRequest("/users/" + userId, { token: token || "", method: "GET" }).then((res: Response) => {
+        if (res.status == 200) {
+          res.json().then((data) => {
+            const name: string = data["user"]["name"];
+            const email: string = data["user"]["email"];
+
+            setName(name);
+            setEmail(email);
+          }).catch((_) => {
+            badToken();
+          });
+        }
+      });
+    }
+  }, [appContext]);
 
   return (
     <Body>

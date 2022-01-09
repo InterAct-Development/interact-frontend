@@ -1,34 +1,61 @@
 import React, { FC, createContext, useReducer } from "react";
-import { checkSSR } from "../helpers/checkSSR";
-import Router from 'next/router';
+import { checkSSR } from "./helpers";
+import Router from "next/router";
+
+interface ContextState {
+  auth: boolean;
+  token?: string | null;
+  userId?: string | null;
+}
+
+export enum ContextAction {
+  Login = "LOGIN",
+  Logout = "LOGOUT",
+}
 
 const initialState = {
   auth: false,
-  token: "",
+  token: undefined,
   userId: "",
 };
 
 export const AppContext = createContext<{
-  state: any;
-  dispatch: React.Dispatch<any>;
+  state: ContextState;
+  dispatch: React.Dispatch<AuthActions>;
 }>({
   state: initialState,
-  dispatch: () => null,
+  dispatch: () => {},
 });
 
-const authReducer = (state: any, action: any) => {
+interface LoginAction {
+  type: ContextAction.Login;
+  payload: {
+    token: string;
+    userId: string;
+  };
+}
+interface LogoutAction {
+  type: ContextAction.Logout;
+}
+
+type AuthActions = LoginAction | LogoutAction;
+
+const authReducer = (
+  state: ContextState,
+  action: AuthActions
+): ContextState => {
   switch (action.type) {
-    case "LOGIN":
+    case ContextAction.Login:
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", action.payload.userId);
 
       return { ...state, auth: true, userId: action.payload.userId };
 
-      case "LOGOUT":
-       localStorage.clear();
-       Router.push('/');
+    case ContextAction.Logout:
+      localStorage.clear();
+      Router.push("/auth/login");
 
-       return {...state, auth: false, userId: null}
+      return { ...state, auth: false, userId: undefined };
 
     default:
       console.log("Action not found.");
@@ -38,13 +65,9 @@ const authReducer = (state: any, action: any) => {
 
 export const GlobalProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
-    auth: checkSSR ? !!localStorage.getItem("token") : null,
-
-    userId: checkSSR
-      ? !!localStorage.getItem("userId")
-        ? localStorage.getItem("userId") ?? ""
-        : null
-      : null,
+    auth: checkSSR ? !!localStorage.getItem("token") : false,
+    userId: checkSSR ? localStorage.getItem("userId") : undefined,
+    token: checkSSR ? localStorage.getItem("token") : undefined
   });
 
   return (

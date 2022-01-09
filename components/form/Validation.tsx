@@ -1,6 +1,7 @@
+import { FormValues } from "./Form";
 
-const validateForm = (values: any) => {
-  console.log("Inside Validation" + values);
+const validateForm = (values: FormValues) => {
+  // console.log("Inside Validation" + values);
 
   const errors: { [key: string]: string } = {};
   const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;

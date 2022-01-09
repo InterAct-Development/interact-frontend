@@ -8,27 +8,16 @@ import { css } from '@emotion/react';
 // "??" = default value
 // "interface" = creates props that has types
 
-// interface PostProps {
-//     bgColor: string
-// }
+interface PostProps {
+    bgColor: string
+}
 
-// const Positioning: FC<PostProps> = ({ bgColor, children }) => { 
-//     return (
-//         styled.div`
-//             height: 100vh;
-//             background-color: ${bgColor};
-//             display: flex;
-//             align-items: center;
-//             justify-content: center;
-// `);
-// }
-
-const Positioning = styled.div`
-    height: 100vh;
-    background-color: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+const Positioning = styled.div<PostProps>`
+            height: 100vh;
+            background-color: ${({bgColor})=>bgColor};
+            display: flex;
+            align-items: center;
+            justify-content: center;
 `;
 
 interface TestPageProps {
@@ -40,7 +29,7 @@ interface TestPageProps {
 export const TestPage = ({ john, shane, age }: TestPageProps) => {
     return (
         <Body>
-            <Positioning>
+            <Positioning bgColor='red'>
                 <h1>Hello</h1>
             </Positioning>
         </Body>

@@ -1,31 +1,40 @@
 // Use .ENV url in production
 const BASE_URL = "http://localhost:3000";
 
-const postData = async (url: string, data = {}) =>
-    await fetch(BASE_URL + url, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-        body: JSON.stringify(data),
-    });
+const requestOptions = {
+  mode: "cors",
+  cache: "no-cache",
+  credentials: "same-origin",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  redirect: "follow",
+  referrerPolicy: "no-referrer",
+} as const;
 
-export const getData = async (url: string, token?: string) =>
-    await fetch(BASE_URL + url, {
-        method: "GET",
-        mode: "cors",
-        credentials: "omit",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-        },
-        redirect: "follow",
-        referrerPolicy: "no-referrer",
-    });
+interface RequestTypes {
+  data?: any;
+  token?: string;
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  headers?: { [key: string]: string };
+}
 
-export default postData;
+export const apiRequest = async (
+  url: string,
+  { data = {}, token, method, headers = {} }: RequestTypes
+) => {
+  headers = { ...requestOptions.headers, ...headers };
+
+  if (token) {
+    headers["Authorization"] = "Bearer " + token;
+  }
+
+  let fetchOptions: RequestInit = {
+    ...requestOptions,
+    method,
+    headers,
+  }
+
+  if (data && method != "GET") fetchOptions.body = JSON.stringify(data);
+  return await fetch(BASE_URL + url, fetchOptions);
+};

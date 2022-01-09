@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
 
+
+// Look at MUI instead of custom grid
 const GridContainer = styled.section`
     display: grid;
     overflow: hidden;
