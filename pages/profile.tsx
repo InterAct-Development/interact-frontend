@@ -20,20 +20,34 @@ const Profile: NextPage = () => {
 
   useEffect(() => {
     const { userId, token } = appContext.state;
+    let isMounted: boolean = true;
     // if (!token) badToken();
 
     if (userId) {
-      apiRequest("/users/" + userId, { token: token || "", method: "GET" }).then((res: Response) => {
+      apiRequest("/users/" + userId, {
+        token: token || "",
+        method: "GET",
+      }).then((res: Response) => {
         if (res.status == 200) {
-          res.json().then((data) => {
-            const name: string = data["user"]["name"];
-            const email: string = data["user"]["email"];
+          res
+            .json()
+            .then((data) => {
+              const name: string = data["user"]["name"];
+              const email: string = data["user"]["email"];
 
-            setName(name);
-            setEmail(email);
-          }).catch((_) => {
-            badToken();
-          });
+              if (isMounted) {
+                setName(name);
+                setEmail(email);
+              }
+
+              // Cleanup
+              return () => {
+                isMounted = false;
+              };
+            })
+            .catch((_) => {
+              badToken();
+            });
         }
       });
     }
