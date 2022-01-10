@@ -75,6 +75,14 @@ export default function VerticalLinearStepper() {
                                     >
                                         {index === steps.length - 1 ? 'Finish' : 'Continue'}
                                     </Button>
+                                    
+                                    <Button
+                                        variant="outlined"
+                                        href="./step[id].tsx"
+                                    >
+                                        View
+                                    </Button>
+                                    
                                     <Button
                                         disabled={index === 0}
                                         onClick={handleBack}
