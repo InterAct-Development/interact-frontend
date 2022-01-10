@@ -57,7 +57,7 @@ export default function VerticalLinearStepper() {
                     <Step key={step.label}>
                         <StepLabel
                             optional={
-                                index === 2 ? (
+                                index === 4 ? ( // MAKE SURE TO CHANGE THIS TO THE AMOUNT OF STEPS THEY HAVE. MAKE IT DYNAMIC???
                                     <Typography variant="caption">Last step</Typography>
                                 ) : null
                             }
@@ -98,9 +98,9 @@ export default function VerticalLinearStepper() {
             </Stepper>
             {activeStep === steps.length && (
                 <Paper square elevation={0} sx={{ p: 3 }}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
+                    <Typography>All steps completed! Congratulations!</Typography>
                     <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-                        Reset
+                        View them again
                     </Button>
                 </Paper>
             )}
