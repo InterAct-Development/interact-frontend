@@ -24,6 +24,10 @@ const Home: NextPage = () => {
     <>
       <Body>
         <section>
+          <h1>
+            Homepage
+          </h1>
+          
           <AppGrid>
             <FloatingActionButton>
               <Fab color="primary" aria-label="add">
@@ -33,6 +37,7 @@ const Home: NextPage = () => {
           </AppGrid>
         </section>
       </Body>
+
     </>
   );
 };
