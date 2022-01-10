@@ -15,4 +15,11 @@ export const breakpoints = {
     lg: 1600,
   } as const
 
+
+// const Colors= {red:'123123'}
+
+// export type ArdanBreakPointKey = keyof typeof Colors;
+
+// const somefunc = (input:ArdanBreakPointKey) => {return Colors[input]}
+
 export default Variables;

@@ -1,11 +1,12 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import type { NextPage } from "next";
 import { Body } from "../layout/Body";
 import { AppGrid } from "../layout/grid/Grid";
 import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Shortcut, Logout } from "@mui/icons-material";
 import styled from "@emotion/styled";
 import { Flex } from "../styles/Mixins";
+import { AppContext } from "../helpers/Context";
 
 const FloatingActionButton = styled.div`
   ${Flex({ horizontal: "flex-end", vertical: "end" })}
@@ -16,6 +17,9 @@ const FloatingActionButton = styled.div`
 `;
 
 const Home: NextPage = () => {
+  const appContext = useContext(AppContext);
+  let isAuth = appContext.state.auth;
+
   return (
     <>
       <Body>
@@ -23,7 +27,7 @@ const Home: NextPage = () => {
           <AppGrid>
             <FloatingActionButton>
               <Fab color="primary" aria-label="add">
-                <AddIcon />
+                {!isAuth ? <Shortcut /> : <Logout />}
               </Fab>
             </FloatingActionButton>
           </AppGrid>

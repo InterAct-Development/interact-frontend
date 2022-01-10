@@ -1,5 +1,5 @@
-1. Create helper function for handling SSR undefined objects e.g. localStorage / window object.
+1. Fix validation client-side, and the remaining amount server-side.
 
-2. Fix validation client-side, and the remaining amount server-side.
+2. Setup Middleware for when user is logged in.
 
-3. Migrate from using local storage (non-reactive) to something more suitable - Context API or Redux for storing tokens and userIDs.
+3. Handle token expiry & fix token redirects
