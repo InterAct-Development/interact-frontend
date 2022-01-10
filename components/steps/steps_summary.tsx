@@ -19,7 +19,7 @@ const steps = [
     },
     {
         label: 'Interacting with other students from around the world',
-        description: 'LOL how do we make this component dynamic? How do we allow users to tap/click on specific steps instead of going step by step with a button? How do we overwrite the designs of this? How do we add ID for specific step and make em clickable to view the detailed version?',
+        description: 'LOL how do we make this component dynamic? How do we allow users to tap/click on specific steps instead of going step by step with a button? How do we overwrite the designs of this? How do we add ID for specific step and make em clickable to view the detailed version? How do you add steps and disable them when there is nothing added yet?',
     },
     {
         label: 'Studying the language and culture',
@@ -28,6 +28,30 @@ const steps = [
     {
         label: 'Step 4',
         description: `Erasmus is great craic.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
+    },
+    {
+        label: 'Running out of ideas',
+        description: `Yep.`,
     },
     {
         label: 'Running out of ideas',
@@ -57,7 +81,7 @@ export default function VerticalLinearStepper() {
                     <Step key={step.label}>
                         <StepLabel
                             optional={
-                                index === 4 ? ( // MAKE SURE TO CHANGE THIS TO THE AMOUNT OF STEPS THEY HAVE. MAKE IT DYNAMIC???
+                                index === 10 ? ( // MAKE SURE TO CHANGE THIS TO THE AMOUNT OF STEPS THEY HAVE. MAKE IT DYNAMIC???
                                     <Typography variant="caption">Last step</Typography>
                                 ) : null
                             }
