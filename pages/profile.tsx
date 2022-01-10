@@ -5,6 +5,8 @@ import Router from "next/router";
 import { AppContext } from "../helpers/Context";
 import { NextPage } from "next";
 
+import StepsSummary from '../components/steps/steps_summary'
+
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
 
@@ -58,6 +60,8 @@ const Profile: NextPage = () => {
       <h1>Profile Page (Protected Route)</h1>
       <p>{"Name: " + name ?? ""}</p>
       <p>{"Email: " + email ?? ""}</p>
+
+      <StepsSummary />
     </Body>
   );
 };
