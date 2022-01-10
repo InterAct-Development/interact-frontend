@@ -18,7 +18,7 @@ const steps = [
     {
         label: 'Interacting with other students from around the world',
         description:
-            'LOL how do we make this component dynamic? How do we allow users to tap/click on specific steps instead of going step by step with a button? How do we overwrite the designs of this?',
+            'LOL how do we make this component dynamic? How do we allow users to tap/click on specific steps instead of going step by step with a button? How do we overwrite the designs of this? How do we add ID for specific step and make em clickable to view the detailed version?',
     },
     {
         label: 'Studying the language and culture',
