@@ -4,8 +4,8 @@ import { Body } from "../layout/Body";
 import Router from "next/router";
 import { AppContext } from "../helpers/Context";
 import { NextPage } from "next";
-
-import StepsSummary from '../components/steps/steps_summary'
+import VerticalLinearStepper from "../components/stepper/Stepper";
+import { checkSSR } from "../helpers/helpers";
 
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
@@ -13,17 +13,11 @@ const Profile: NextPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const badToken = () => {
-    console.log("Invalid token");
-    Router.push("/auth/login");
-  };
-
-  // Look into React Router.pre()
-
   useEffect(() => {
-    const { userId, token } = appContext.state;
+    const { userId } = appContext.state;
+    // const { userId, token } = appContext.state;
+    const token = checkSSR ? localStorage.getItem("token") : undefined;
     let isMounted: boolean = true;
-    // if (!token) badToken();
 
     if (userId) {
       apiRequest("/users/" + userId, {
@@ -48,12 +42,12 @@ const Profile: NextPage = () => {
               };
             })
             .catch((_) => {
-              badToken();
+              // Handle error
             });
         }
       });
     }
-  }, [appContext]);
+  }, [appContext.state]);
 
   return (
     <Body>
@@ -61,7 +55,7 @@ const Profile: NextPage = () => {
       <p>{"Name: " + name ?? ""}</p>
       <p>{"Email: " + email ?? ""}</p>
 
-      <StepsSummary />
+      <VerticalLinearStepper />
     </Body>
   );
 };
