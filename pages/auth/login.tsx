@@ -25,9 +25,9 @@ export const loginAuth = (
       email: values.email,
       password: values.password,
     },
-    method: "POST"
+    method: "POST",
   }).then((res: Response) => {
-    if (res.status == 200) {
+    if (res.status === 200) {
       res.json().then((data) => {
         const userId = data["id"];
         const token = data["token"];
@@ -41,7 +41,6 @@ export const loginAuth = (
         });
 
         setSubmitting(false);
-        Router.push("/profile");
       });
     } else {
       setSubmitting(false);
@@ -50,15 +49,17 @@ export const loginAuth = (
 };
 
 const Login: NextPage = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin] = useState(true);
   const appContext = useContext(AppContext);
 
-  const { auth } = appContext.state;
-
   useEffect(() => {
-    setIsLogin(true);
-    if (auth) Router.push('/');
-  }, [auth]);
+    const { token, userId } = appContext.state;
+   
+    // Ensure we have a token and userId before proceeding
+    if (token && userId) {
+      Router.push("/profile");
+    }
+  }, [appContext.state]);
 
   return (
     <>

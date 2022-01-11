@@ -24,11 +24,9 @@ export const apiRequest = async (
   { data = {}, token, method, headers = {} }: RequestTypes
 ) => {
   headers = { ...requestOptions.headers, ...headers };
-  console.info("Token: " + token);
-
+  
   if (token) {
     headers["Authorization"] = "Bearer " + token;
-    console.info("Has token");
   }
 
   let fetchOptions: RequestInit = {

@@ -26,7 +26,7 @@ export const registerAuth = (values: FormValues, setSubmitting: Function) => {
     },
     method: "POST"
   }).then((res: Response) => {
-    if (res.status == 201) {
+    if (res.status === 201) {
       setSubmitting(false);
       Router.push("/auth/login");
     } else {

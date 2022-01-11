@@ -14,9 +14,7 @@ const Profile: NextPage = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const { userId } = appContext.state;
-    // const { userId, token } = appContext.state;
-    const token = checkSSR ? localStorage.getItem("token") : undefined;
+    const { userId, token } = appContext.state;
     let isMounted: boolean = true;
 
     if (userId) {
@@ -24,7 +22,7 @@ const Profile: NextPage = () => {
         token: token || "",
         method: "GET",
       }).then((res: Response) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           res
             .json()
             .then((data) => {

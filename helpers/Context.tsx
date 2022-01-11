@@ -24,7 +24,7 @@ export const AppContext = createContext<{
   dispatch: React.Dispatch<AuthActions>;
 }>({
   state: initialState,
-  dispatch: () => {},
+  dispatch: () => { },
 });
 
 interface LoginAction {
@@ -49,7 +49,12 @@ const authReducer = (
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userId", action.payload.userId);
 
-      return { ...state, auth: true, userId: action.payload.userId };
+      return {
+        ...state,
+        auth: true,
+        token: action.payload.token,
+        userId: action.payload.userId,
+      };
 
     case ContextAction.Logout:
       localStorage.clear();
@@ -67,7 +72,7 @@ export const GlobalProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     auth: checkSSR ? !!localStorage.getItem("token") : false,
     userId: checkSSR ? localStorage.getItem("userId") : undefined,
-    token: checkSSR ? localStorage.getItem("token") : undefined
+    token: checkSSR ? localStorage.getItem("token") : undefined,
   });
 
   return (
