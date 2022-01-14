@@ -1,5 +1,5 @@
 import React, { FC, createContext, useReducer } from "react";
-import { checkSSR } from "./helpers";
+import { checkSSR } from "./CheckSSR";
 import Router from "next/router";
 
 interface ContextState {
@@ -24,7 +24,7 @@ export const AppContext = createContext<{
   dispatch: React.Dispatch<AuthActions>;
 }>({
   state: initialState,
-  dispatch: () => { },
+  dispatch: () => {},
 });
 
 interface LoginAction {

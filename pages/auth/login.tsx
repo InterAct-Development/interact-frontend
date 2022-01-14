@@ -1,19 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import type { NextPage } from "next";
-import styled from "@emotion/styled";
-import { Flex } from "../../styles/Mixins";
 import { Body } from "../../layout/Body";
-import { AppGrid, GridItem } from "../../layout/grid/Grid";
 import { Card, Box } from "@mui/material";
 import UserForm, { FormValues } from "../../components/form/Form";
 import { apiRequest } from "../../helpers/Requests";
 import Router from "next/router";
 import { AppContext, ContextAction } from "../../helpers/Context";
-
-const FullHeight = styled.div`
-  height: 100vh;
-  ${Flex}
-`;
+import { Container } from "../../layout/Globals";
+import { Middleware } from "../../helpers/Middleware";
 
 export const loginAuth = (
   appContext: any,
@@ -54,27 +48,24 @@ const Login: NextPage = () => {
 
   useEffect(() => {
     const { token, userId } = appContext.state;
-   
-    // Ensure we have a token and userId before proceeding
+
+    // Ensures we have a token and userId before proceeding
+    // Also acts as middleware
     if (token && userId) {
       Router.push("/profile");
     }
   }, [appContext.state]);
 
   return (
-    <>
-      <Body>
-        <AppGrid>
-          <GridItem>
-            <FullHeight>
-              <Box sx={{ maxWidth: 600 }}>
-                <Card variant="outlined">{UserForm(isLogin)}</Card>
-              </Box>
-            </FullHeight>
-          </GridItem>
-        </AppGrid>
-      </Body>
-    </>
+    <Body>
+      <Middleware auth={!appContext.state.auth}>
+        <Container height="100vh">
+          <Box sx={{ maxWidth: 600 }}>
+            <Card variant="outlined">{UserForm(isLogin)}</Card>
+          </Box>
+        </Container>
+      </ Middleware>
+    </Body>
   );
 };
 

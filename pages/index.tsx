@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import type { NextPage } from "next";
 import { Body } from "../layout/Body";
-import { AppGrid } from "../layout/grid/Grid";
 import { Fab } from "@mui/material";
 import { Shortcut, Logout } from "@mui/icons-material";
 import styled from "@emotion/styled";
@@ -27,14 +26,11 @@ const Home: NextPage = () => {
           <h1>
             Homepage
           </h1>
-          
-          <AppGrid>
             <FloatingActionButton>
               <Fab color="primary" aria-label="add">
                 {!isAuth ? <Shortcut /> : <Logout />}
               </Fab>
             </FloatingActionButton>
-          </AppGrid>
         </section>
       </Body>
 
