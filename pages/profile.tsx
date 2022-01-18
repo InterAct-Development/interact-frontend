@@ -6,6 +6,8 @@ import { NextPage } from "next";
 import VerticalLinearStepper from "../components/stepper/Stepper";
 import { invalidToken, Middleware } from "../helpers/Middleware";
 
+import Avatar from '../components/avatar/Avatar';
+
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
 
@@ -49,6 +51,7 @@ const Profile: NextPage = () => {
       <Middleware auth={appContext.state.auth}>
         <>
             <h1>Profile Page (Protected Route)</h1>
+            <Avatar />
             <p>{"Name: " + name ?? ""}</p>
             <p>{"Email: " + email ?? ""}</p>
 
