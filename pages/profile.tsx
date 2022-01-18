@@ -55,7 +55,7 @@ const Profile: NextPage = () => {
 
   return (
     <Body>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, margin: 1 }}>
         <Grid container>
           <Middleware auth={appContext.state.auth}>
             <>
@@ -69,7 +69,7 @@ const Profile: NextPage = () => {
               </Grid>
 
               <Grid xs={8}>
-                <p>{"Name: " + name ?? ""}</p>
+                <h3>{"Name: " + name ?? ""}</h3>
                 <p>{"Email: " + email ?? ""}</p>
               </Grid>
 

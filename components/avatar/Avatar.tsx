@@ -10,8 +10,7 @@ export default function VariantAvatars() {
                 sx={{ 
                     bgcolor: deepOrange[500], 
                     width: 100, 
-                    height: 100, 
-                    marginLeft: 1 }}
+                    height: 100 }}
                 variant="square"
             />
         </Stack>
