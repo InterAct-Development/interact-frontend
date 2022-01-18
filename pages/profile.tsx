@@ -19,6 +19,7 @@ const Profile: NextPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  // Must be dynamic and added to the db. Static for demo purposes.
   const biography: string = "Velit labore ut aliquip ea reprehenderit dolor est dolor esse nulla. Officia eu non incididunt cillum amet qui nostrud laboris excepteur labore mollit."
 
   useEffect(() => {
