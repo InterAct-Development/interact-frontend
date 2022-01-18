@@ -19,6 +19,8 @@ const Profile: NextPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
+  const biography: string = "Velit labore ut aliquip ea reprehenderit dolor est dolor esse nulla. Officia eu non incididunt cillum amet qui nostrud laboris excepteur labore mollit."
+
   useEffect(() => {
     const { auth, userId, token } = appContext.state;
     let isMounted: boolean = true;
@@ -70,6 +72,15 @@ const Profile: NextPage = () => {
                 <p>{"Name: " + name ?? ""}</p>
                 <p>{"Email: " + email ?? ""}</p>
               </Grid>
+
+              <Grid xs={12}>
+                <p>
+                  Bio:
+                  <br />
+                  {biography}
+                </p>
+              </Grid>
+
 
               <Grid xs={12} sx={{ marginTop: 5 }}>
                 <h2>Steps/Goals/Achievements</h2>
