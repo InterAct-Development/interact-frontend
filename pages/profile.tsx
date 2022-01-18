@@ -58,7 +58,9 @@ const Profile: NextPage = () => {
           <Middleware auth={appContext.state.auth}>
             <>
 
-              <h1>Profile Page (Protected Route)</h1>
+              <Grid xs={12}>
+                <h1>Profile Page (Protected Route)</h1>
+              </Grid>
 
               <Grid xs={4}>
                 <Avatar />
@@ -69,10 +71,11 @@ const Profile: NextPage = () => {
                 <p>{"Email: " + email ?? ""}</p>
               </Grid>
 
-              <Grid xs={12}>
+              <Grid xs={12} sx={{ marginTop: 5 }}>
+                <h2>Steps/Goals/Achievements</h2>
                 <VerticalLinearStepper />
               </Grid>
-              
+
             </>
           </Middleware>
         </Grid>
