@@ -1,4 +1,7 @@
 import Link from "next/link";
+import React, { useContext } from "react";
+import { AppContext, ContextAction } from "../../helpers/Context";
+
 import {
   Button,
   AppBar,
@@ -6,8 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { useContext } from "react";
-import { AppContext, ContextAction } from "../../helpers/Context";
+import { deepOrange } from '@mui/material/colors';
 
 const MaterialNav = () => {
   const appContext = useContext(AppContext);
@@ -17,7 +19,7 @@ const MaterialNav = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: deepOrange[500] }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             InterAct
