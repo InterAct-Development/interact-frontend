@@ -8,8 +8,8 @@ import {
   Box,
   Toolbar,
   Typography,
+  makeStyles,
 } from "@mui/material";
-import { deepOrange } from '@mui/material/colors';
 
 const MaterialNav = () => {
   const appContext = useContext(AppContext);
@@ -19,7 +19,7 @@ const MaterialNav = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: deepOrange[500] }}>
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             InterAct

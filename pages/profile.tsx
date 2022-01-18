@@ -56,9 +56,9 @@ const Profile: NextPage = () => {
 
   return (
     <Body>
-      <Box sx={{ flexGrow: 1, margin: 1 }}>
-        <Grid container>
-          <Middleware auth={appContext.state.auth}>
+      <Middleware auth={appContext.state.auth}>
+        <Box sx={{ flexGrow: 1, margin: 1 }}>
+          <Grid container>
             <>
 
               <Grid xs={12}>
@@ -89,9 +89,9 @@ const Profile: NextPage = () => {
               </Grid>
 
             </>
-          </Middleware>
-        </Grid>
-      </Box>
+          </Grid>
+        </Box>
+      </Middleware>
     </Body >
   );
 };
