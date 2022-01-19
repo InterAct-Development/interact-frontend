@@ -44,6 +44,18 @@ const ViewStep: NextPage = () => {
                         <Grid xs={12}>
                             <ImageList />
                         </Grid>
+
+                        <Grid xs={12}>
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                src="https://www.youtube.com/embed/7lvXbfNBIQg"
+                                frameBorder="0"
+                                data-allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            >
+                            </iframe>
+                        </Grid>
                     </>
                 </Grid>
             </Box>
