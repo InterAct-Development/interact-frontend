@@ -8,8 +8,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
-import { deepOrange } from '@mui/material/colors';
-
 // Text
 // Images
 // Video?
@@ -17,13 +15,33 @@ import { deepOrange } from '@mui/material/colors';
 const ViewStep: NextPage = () => {
 
     return (
-        <>
-            <Body>
-                <Box>
-                    <h1>Step 1</h1>
-                </Box>
-            </Body>
-        </>
+        <Body>
+            <Box sx={{ flexGrow: 1, margin: 1 }}>
+                <Grid container>
+                    <>
+                        <Grid xs={12}>
+                            <h2>Step/Goal Title</h2>
+                        </Grid>
+                        <Grid xs={12}>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Eligendi provident ipsa reiciendis! Facere perspiciatis culpa ratione beatae fuga tempora doloribus?
+                                Excepturi impedit saepe officiis nemo, in neque ullam vel asperiores.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
+                                laboriosam cumque nemo culpa quis, natus dolores aliquid ad, optio quisquam eius similique eligendi.
+                                Et pariatur vero delectus tenetur, illum vitae!
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                Voluptatibus, perferendis ducimus quia quam sed, sint deleniti quod minus provident dicta obcaecati ad debitis at harum minima?
+                                Ex quos nihil soluta.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Molestias quaerat ullam expedita animi reiciendis magni repudiandae, cumque cum, similique eos vitae nihil,
+                                voluptates distinctio illum unde iste. Suscipit, consequatur possimus?
+                            </p>
+                        </Grid>
+                    </>
+                </Grid>
+            </Box>
+        </Body>
     );
 }
 
