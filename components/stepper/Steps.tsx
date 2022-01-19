@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 import Box from "@mui/material/Box";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
@@ -34,9 +36,13 @@ export const goals = (
               {index === steps.length - 1 ? "Finish" : "Continue"}
             </Button>
 
-            <Button variant="outlined" href="./step[id].tsx">
+            <Link passHref href="/step">
+              <Button variant="outlined">View</Button>
+            </Link>
+
+            {/* <Button variant="outlined" href="./step[id].tsx">
               View
-            </Button>
+            </Button> */}
 
             <Button
               disabled={index === 0}
