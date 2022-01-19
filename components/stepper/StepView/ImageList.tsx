@@ -35,7 +35,7 @@ export default function CustomImageList() {
           <ImageListItem key={item.img} cols={cols} rows={rows}>
             <img
               {...srcset(item.img, 250, 200, rows, cols)}
-              alt={item.title}
+            //   alt={item.title}
               loading="lazy"
             />
             {/* <ImageListItemBar
