@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { NextPage } from "next";
 
 import { Body } from '../layout/Body';
+import ImageList from '../components/stepper/StepView/ImageList';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -22,6 +23,7 @@ const ViewStep: NextPage = () => {
                         <Grid xs={12}>
                             <h2>Step/Goal Title</h2>
                         </Grid>
+
                         <Grid xs={12}>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -37,6 +39,10 @@ const ViewStep: NextPage = () => {
                                 Molestias quaerat ullam expedita animi reiciendis magni repudiandae, cumque cum, similique eos vitae nihil,
                                 voluptates distinctio illum unde iste. Suscipit, consequatur possimus?
                             </p>
+                        </Grid>
+
+                        <Grid xs={12}>
+                            <ImageList />
                         </Grid>
                     </>
                 </Grid>
