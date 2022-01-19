@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { NextPage } from "next";
+import { useRouter } from 'next/router'
 
 import { Body } from '../layout/Body';
 import ImageList from '../components/stepper/StepView/ImageList';
@@ -8,12 +9,14 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Button from "@mui/material/Button";
 
 // Text
 // Images
 // Video?
 
 const ViewStep: NextPage = () => {
+    const backRouter = useRouter()
 
     return (
         <Body>
@@ -45,16 +48,29 @@ const ViewStep: NextPage = () => {
                             <ImageList />
                         </Grid>
 
-                        <Grid xs={12}>
+                        <Grid xs={12} style={{ marginTop: 20 }}>
                             <iframe
                                 width="100%"
-                                height="100%"
-                                src="https://www.youtube.com/embed/7lvXbfNBIQg"
+                                height="720"
+                                src="https://www.youtube.com/embed/LcKnx7I97yk"
                                 frameBorder="0"
                                 data-allow="autoplay; encrypted-media"
                                 allowFullScreen
                             >
                             </iframe>
+                        </Grid>
+
+                        <Grid 
+                            xs={12} 
+                            style={{ display: "flex", marginTop: 20, marginBottom: 20 }}
+                        >
+                            <Button 
+                                onClick={() => backRouter.back()} 
+                                variant="contained" 
+                                style={{ marginLeft: "auto" }}
+                            >
+                                Back to Profile
+                            </Button>
                         </Grid>
                     </>
                 </Grid>
