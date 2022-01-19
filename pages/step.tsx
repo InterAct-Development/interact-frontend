@@ -1,4 +1,7 @@
 import * as React from 'react';
+import type { NextPage } from "next";
+
+import { Body } from '../layout/Body';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -11,8 +14,17 @@ import { deepOrange } from '@mui/material/colors';
 // Images
 // Video?
 
-const ViewStep = () => {
+const ViewStep: NextPage = () => {
 
+    return (
+        <>
+            <Body>
+                <Box>
+                    <h1>Step 1</h1>
+                </Box>
+            </Body>
+        </>
+    );
 }
 
 export default ViewStep;
