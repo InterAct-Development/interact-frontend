@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { NextPage } from "next";
 
 import { apiRequest } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import { AppContext } from "../helpers/Context";
-import { NextPage } from "next";
 import { invalidToken, Middleware } from "../helpers/Middleware";
+import Avatar from '../components/avatar/Avatar';
+import VerticalLinearStepper from "../components/stepper/Stepper";
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -13,8 +15,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from "@mui/material/Button";
 
-import Avatar from '../components/avatar/Avatar';
-import VerticalLinearStepper from "../components/stepper/Stepper";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
@@ -107,6 +108,16 @@ const Profile: NextPage = () => {
                 <VerticalLinearStepper />
               </Grid>
 
+              <Grid xs={12} style={{ marginTop: 5 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  style={{ height: 100 }}
+                >
+                  Generate Certificate <PictureAsPdfIcon />
+                </Button>
+              </Grid>
             </>
           </Grid>
         </Box>
