@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import Link from "next/link";
+
 import { apiRequest } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import { AppContext } from "../helpers/Context";
@@ -9,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Button from "@mui/material/Button";
 
 import Avatar from '../components/avatar/Avatar';
 import VerticalLinearStepper from "../components/stepper/Stepper";
@@ -85,6 +88,22 @@ const Profile: NextPage = () => {
 
               <Grid xs={12} sx={{ marginTop: 5 }}>
                 <h2>Steps/Goals/Achievements</h2>
+
+                {/* Messy messy coding at the bottom with the grids just to make the button float right. Ignore it for now. It's temporary! */}
+                <Grid
+                  xs={12}
+                  style={{ display: "flex" }}
+                >
+                  <Link passHref href="/addStep">
+                    <Button
+                      variant="contained"
+                      style={{ marginLeft: "auto" }}
+                    >
+                      Add Achievement
+                    </Button>
+                  </Link>
+                </Grid>
+
                 <VerticalLinearStepper />
               </Grid>
 
