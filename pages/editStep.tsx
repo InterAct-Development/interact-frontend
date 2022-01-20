@@ -40,7 +40,7 @@ const AddStep: NextPage = () => {
                                 required
                                 fullWidth
                                 label="Step/Goal/Achievement"
-                                defaultValue="Step 1"
+                                defaultValue="Step/Goal Title"
                                 id="fullWidth filled-basic"
                                 variant="filled"
                             />
@@ -53,7 +53,18 @@ const AddStep: NextPage = () => {
                                 multiline
                                 rows={8}
                                 label="Write something..."
-                                defaultValue="Default Value"
+                                defaultValue="Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Eligendi provident ipsa reiciendis! Facere perspiciatis culpa ratione beatae fuga tempora doloribus?
+                                Excepturi impedit saepe officiis nemo, in neque ullam vel asperiores.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
+                                laboriosam cumque nemo culpa quis, natus dolores aliquid ad, optio quisquam eius similique eligendi.
+                                Et pariatur vero delectus tenetur, illum vitae!
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                Voluptatibus, perferendis ducimus quia quam sed, sint deleniti quod minus provident dicta obcaecati ad debitis at harum minima?
+                                Ex quos nihil soluta.
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Molestias quaerat ullam expedita animi reiciendis magni repudiandae, cumque cum, similique eos vitae nihil,
+                                voluptates distinctio illum unde iste. Suscipit, consequatur possimus?"
                                 id="fullWidth filled-multiline-static"
                                 variant="filled"
                             />
@@ -70,11 +81,9 @@ const AddStep: NextPage = () => {
                         </Grid>
 
                         <Grid xs={6} style={{ marginTop: -20 }}>
-                            <Skeleton
-                                sx={{ bgcolor: 'grey.700' }}
-                                // animation="wave"
-                                variant="rectangular"
-                                // width='100%'
+                            <img
+                                src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"
+                                width='100%'
                                 height={240}
                             />
                         </Grid>
@@ -82,9 +91,7 @@ const AddStep: NextPage = () => {
                         <Grid xs={6} style={{ marginTop: -20 }}>
                             <Skeleton
                                 sx={{ bgcolor: 'grey.700' }}
-                                // animation="wave"
                                 variant="rectangular"
-                                // width='100%'
                                 height={240}
                             />
                         </Grid>
@@ -100,13 +107,15 @@ const AddStep: NextPage = () => {
                         </Grid>
 
                         <Grid xs={12} style={{ marginTop: -20 }}>
-                            <Skeleton
-                                sx={{ bgcolor: 'grey.700' }}
-                                // animation="wave"
-                                variant="rectangular"
-                                // width='100%'
-                                height={240}
-                            />
+                            <iframe
+                                width="100%"
+                                height="240"
+                                src="https://www.youtube.com/embed/LcKnx7I97yk"
+                                frameBorder="0"
+                                data-allow="autoplay; encrypted-media"
+                                allowFullScreen
+                            >
+                            </iframe>
                         </Grid>
 
                         <Grid
