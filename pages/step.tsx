@@ -69,10 +69,12 @@ const ViewStep: NextPage = () => {
                             <ImageList />
                         </Grid>
 
+                        {/* height=720 is to be "Facebook" style. height=240 is more of a default landscape format */}
                         <Grid xs={12} style={{ marginTop: 20 }}>
                             <iframe
                                 width="100%"
                                 height="720"
+                                // height="240"
                                 src="https://www.youtube.com/embed/LcKnx7I97yk"
                                 frameBorder="0"
                                 data-allow="autoplay; encrypted-media"
