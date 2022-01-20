@@ -39,6 +39,7 @@ const AddStep: NextPage = () => {
                                 required
                                 fullWidth
                                 label="Step/Goal/Achievement"
+                                defaultValue="Step 1"
                                 id="fullWidth filled-basic"
                                 variant="filled"
                             />
@@ -51,7 +52,7 @@ const AddStep: NextPage = () => {
                                 multiline
                                 rows={8}
                                 label="Write something..."
-                                // defaultValue="Default Value"
+                                defaultValue="Default Value"
                                 id="fullWidth filled-multiline-static"
                                 variant="filled"
                             />
