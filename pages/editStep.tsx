@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { NextPage } from "next";
 import { useRouter } from 'next/router'
+import Link from "next/link";
 
 import { Body } from '../layout/Body';
 
@@ -57,17 +58,17 @@ const AddStep: NextPage = () => {
                                 variant="filled"
                             />
                         </Grid>
-                        
+
                         <Grid xs={12}>
                             <p>
                                 Add Images
 
                                 <IconButton aria-label="add" color="primary">
                                     <AddPhotoAlternate />
-                                </IconButton>    
+                                </IconButton>
                             </p>
                         </Grid>
-                        
+
                         <Grid xs={6} style={{ marginTop: -20 }}>
                             <Skeleton
                                 sx={{ bgcolor: 'grey.700' }}
@@ -77,7 +78,7 @@ const AddStep: NextPage = () => {
                                 height={240}
                             />
                         </Grid>
-                        
+
                         <Grid xs={6} style={{ marginTop: -20 }}>
                             <Skeleton
                                 sx={{ bgcolor: 'grey.700' }}
@@ -87,17 +88,17 @@ const AddStep: NextPage = () => {
                                 height={240}
                             />
                         </Grid>
-                        
+
                         <Grid xs={12}>
                             <p>
                                 Add Video
 
                                 <IconButton aria-label="add" color="primary">
                                     <VideoLibrary />
-                                </IconButton>      
+                                </IconButton>
                             </p>
                         </Grid>
-                        
+
                         <Grid xs={12} style={{ marginTop: -20 }}>
                             <Skeleton
                                 sx={{ bgcolor: 'grey.700' }}
@@ -108,17 +109,18 @@ const AddStep: NextPage = () => {
                             />
                         </Grid>
 
-                        <Grid 
-                            xs={12} 
+                        <Grid
+                            xs={12}
                             style={{ display: "flex", marginTop: 20, marginBottom: 20 }}
                         >
-                            <Button 
-                                onClick={() => backRouter.back()} 
-                                variant="contained" 
-                                style={{ marginLeft: "auto" }}
-                            >
-                                Back to Profile
-                            </Button>
+                            <Link passHref href="/step">
+                                <Button
+                                    variant="contained"
+                                    style={{ marginLeft: "auto" }}
+                                >
+                                    Back to Step Page
+                                </Button>
+                            </Link>
                         </Grid>
                     </>
                 </Grid>
