@@ -24,6 +24,7 @@ a {
 }
 
 main {
+    padding: 15px 30px;
     height: 100%;
     display: flex;
     flex-direction: column;

@@ -8,9 +8,10 @@ import { apiRequest } from "../../helpers/Requests";
 import { AppContext } from "../../helpers/Context";
 import { Container } from "../../layout/Globals";
 import { Middleware } from "../../helpers/Middleware";
+import { BASE_URL } from "../../helpers/Endpoints";
 
 export const registerAuth = (values: FormValues, setSubmitting: Function) => {
-  apiRequest("/users/register", {
+  apiRequest(BASE_URL + "/users/register", {
     data: {
       name: values.name,
       age: values.age,

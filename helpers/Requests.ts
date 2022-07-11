@@ -1,6 +1,3 @@
-// Use .ENV url in production
-const BASE_URL = "http://localhost:3000";
-
 const requestOptions = {
   mode: "cors",
   cache: "no-cache",
@@ -36,5 +33,5 @@ export const apiRequest = async (
   }
 
   if (data && method != "GET") fetchOptions.body = JSON.stringify(data);
-  return await fetch(BASE_URL + url, fetchOptions);
+  return await fetch(url, fetchOptions);
 };

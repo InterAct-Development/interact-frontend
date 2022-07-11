@@ -1,53 +1,42 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { SetStateAction, useContext, useEffect, useState } from "react";
 import { apiRequest } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import { AppContext } from "../helpers/Context";
 import { NextPage } from "next";
 import { invalidToken, Middleware } from "../helpers/Middleware";
-
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
-import Avatar from '../components/avatar/Avatar';
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Avatar from "../components/avatar/Avatar";
 import VerticalLinearStepper from "../components/stepper/Stepper";
+import { BASE_URL } from "../helpers/Endpoints";
 
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    role: "",
+  });
 
   // Must be dynamic and added to the db. Static for demo purposes.
-  const biography: string = "Velit labore ut aliquip ea reprehenderit dolor est dolor esse nulla. Officia eu non incididunt cillum amet qui nostrud laboris excepteur labore mollit."
+  const biography: string =
+    "Velit labore ut aliquip ea reprehenderit dolor est dolor esse nulla. Officia eu non incididunt cillum amet qui nostrud laboris excepteur labore mollit.";
 
   useEffect(() => {
     const { auth, userId, token } = appContext.state;
-    let isMounted: boolean = true;
 
     // Look at a better way to do this.
     if (!auth) invalidToken();
 
     if (token && userId) {
-      apiRequest("/users/" + userId, {
+      apiRequest(BASE_URL + "/users/" + userId, {
         token: token || "",
         method: "GET",
       }).then((res: Response) => {
         if (res.status === 200) {
-          res.json().then((data) => {
-            const name: string = data["user"]["name"];
-            const email: string = data["user"]["email"];
-
-            if (isMounted) {
-              setName(name);
-              setEmail(email);
-            }
-
-            // Cleanup
-            return () => {
-              isMounted = false;
-            };
+          res.json().then((currentUser) => {
+            const userAttributes: any = currentUser.user;
+            setUser(userAttributes);
           });
         }
       });
@@ -60,7 +49,6 @@ const Profile: NextPage = () => {
         <Box sx={{ flexGrow: 1, margin: 1 }}>
           <Grid container>
             <>
-
               <Grid xs={12}>
                 <h1>Profile Page (Protected Route)</h1>
               </Grid>
@@ -70,8 +58,9 @@ const Profile: NextPage = () => {
               </Grid>
 
               <Grid xs={8}>
-                <h3>{"Name: " + name ?? ""}</h3>
-                <p>{"Email: " + email ?? ""}</p>
+                <h3>{"Name: " + user.name}</h3>
+                <p>{"Email: " + user.email}</p>
+                <p>{"Role: " + user.role}</p>
               </Grid>
 
               <Grid xs={12}>
@@ -82,17 +71,15 @@ const Profile: NextPage = () => {
                 </p>
               </Grid>
 
-
               <Grid xs={12} sx={{ marginTop: 5 }}>
                 <h2>Steps/Goals/Achievements</h2>
                 <VerticalLinearStepper />
               </Grid>
-
             </>
           </Grid>
         </Box>
       </Middleware>
-    </Body >
+    </Body>
   );
 };
 

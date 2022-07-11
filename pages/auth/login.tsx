@@ -8,13 +8,14 @@ import Router from "next/router";
 import { AppContext, ContextAction } from "../../helpers/Context";
 import { Container } from "../../layout/Globals";
 import { Middleware } from "../../helpers/Middleware";
+import { BASE_URL } from "../../helpers/Endpoints";
 
 export const loginAuth = (
   appContext: any,
   values: FormValues,
   setSubmitting: Function
 ) => {
-  apiRequest("/users/login", {
+  apiRequest(BASE_URL + "/users/login", {
     data: {
       email: values.email,
       password: values.password,

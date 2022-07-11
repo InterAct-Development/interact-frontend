@@ -27,6 +27,9 @@ const MaterialNav = () => {
           <Link passHref href="/">
             <Button color="inherit">Home</Button>
           </Link>
+          <Link passHref href="/pre-test">
+            <Button color="inherit">Pre-Test</Button>
+          </Link>
           {!auth && (
             <Link passHref href="/auth/login">
               <Button color="inherit">Login</Button>
