@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext, ContextAction } from "../../helpers/Context";
 
 import {
@@ -9,18 +9,51 @@ import {
   Toolbar,
   Typography,
   makeStyles,
+  InputLabel,
+  Select,
+  SelectChangeEvent,
+  FormControl,
+  MenuItem
 } from "@mui/material";
+import { LangContext, Languages } from "../../helpers/LanguageProvider";
 
 const MaterialNav = () => {
   const appContext = useContext(AppContext);
+  const [locale, setLocale] = useContext(LangContext);
   const { auth } = appContext.state;
 
-  const handleLogout = () => { appContext.dispatch({ type: ContextAction.Logout }); }
+  const handleLogout = () => appContext.dispatch({ type: ContextAction.Logout });
+
+  const handleLocale = (e: SelectChangeEvent) => {
+    if (setLocale) {
+      const value = e.target.value;
+      switch (value) {
+        case Languages.english:
+          setLocale(Languages.english)
+          break;
+        case Languages.french:
+          setLocale(Languages.french)
+          break;
+      }
+    }
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          <FormControl variant="standard" sx={{ minWidth: 120 }}>
+            <Select
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              value={locale}
+              label="Language"
+              onChange={handleLocale}
+            >
+              <MenuItem value={Languages.english}>English</MenuItem>
+              <MenuItem value={Languages.french}>French</MenuItem>
+            </Select>
+          </FormControl>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             InterAct
           </Typography>

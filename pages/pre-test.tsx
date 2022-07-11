@@ -4,6 +4,7 @@ import { Body } from "../layout/Body";
 import { apiRequest } from "../helpers/Requests";
 import { STRAPI_URL, QUERY_ALL_STRAPI } from "../helpers/Endpoints";
 import { Card } from "@mui/material";
+import { useLocalizedFetch } from "../helpers/hooks/LocalizedFetch";
 
 const Home: NextPage = () => {
   const [answers, setAnswers] = useState<any[]>([]);
@@ -11,22 +12,21 @@ const Home: NextPage = () => {
     core_question_1: "",
   });
 
+  const [preTestQuestionnaireData] = useLocalizedFetch([STRAPI_URL + "/api/pre-test-questionnaires", {
+    method: "GET",
+    params: QUERY_ALL_STRAPI
+  }], []);
+
   useEffect(() => {
-    apiRequest(STRAPI_URL + "/api/pre-test-questionnaires" + QUERY_ALL_STRAPI, {
-      method: "GET",
-    }).then((res: Response) => {
-      if (res.status === 200) {
-        res.json().then((attributes) => {
-          const questionnaire = attributes["data"]["0"]["attributes"];
+    if (preTestQuestionnaireData) {
+      const questionnaire = preTestQuestionnaireData["0"]["attributes"];
 
-          setQuestion(questionnaire);
-          setAnswers(questionnaire["core_answer_1"]);
-        });
-      }
-    });
-  }, []);
+      setQuestion(questionnaire);
+      setAnswers(questionnaire["core_answer_1"]);
+    }
+  }, [preTestQuestionnaireData]);
 
-  const answersMap = answers.map((ans, i) => {
+  const answersMap = (answers || []).map((ans, i) => {
     return (
       <div key={i} style={{ marginBottom: "20px" }}>
         <Card>

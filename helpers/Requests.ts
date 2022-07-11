@@ -14,14 +14,16 @@ interface RequestTypes {
   token?: string;
   method: "GET" | "POST" | "PUT" | "DELETE";
   headers?: { [key: string]: string };
+  params?: Record<string, string>
 }
 
 export const apiRequest = async (
   url: string,
-  { data = {}, token, method, headers = {} }: RequestTypes
+  { data = {}, token, method, headers = {}, params = {} }: RequestTypes,
+
 ) => {
   headers = { ...requestOptions.headers, ...headers };
-  
+
   if (token) {
     headers["Authorization"] = "Bearer " + token;
   }
@@ -33,5 +35,8 @@ export const apiRequest = async (
   }
 
   if (data && method != "GET") fetchOptions.body = JSON.stringify(data);
+
+  // Add the params to end of url string
+  url += `?${new URLSearchParams({ "locale": "fr", ...params, })}`
   return await fetch(url, fetchOptions);
 };
