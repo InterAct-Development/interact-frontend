@@ -1,15 +1,18 @@
 import * as React from 'react';
 import type { NextPage } from "next";
 import { useRouter } from 'next/router'
+import Link from "next/link";
 
 import { Body } from '../layout/Body';
 import ImageList from '../components/stepper/StepView/ImageList';
 
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Button from "@mui/material/Button";
+import {
+    Box,
+    Paper,
+    Grid,
+    Button,
+} from '@mui/material';
+import { deepOrange } from '@mui/material/colors';
 
 // Text
 // Images
@@ -23,8 +26,26 @@ const ViewStep: NextPage = () => {
             <Box sx={{ flexGrow: 1, margin: 1 }}>
                 <Grid container>
                     <>
-                        <Grid xs={12}>
+                        <Grid xs={6}>
                             <h2>Step/Goal Title</h2>
+                        </Grid>
+
+                        <Grid
+                            xs={6}
+                            style={{ display: "flex", marginTop: 20 }}
+                        >
+                            <Link passHref href="/editStep">
+                                <Button
+                                    variant="contained"
+                                    style={{
+                                        marginLeft: "auto",
+                                        backgroundColor: deepOrange[500],
+                                        height: '70%'
+                                    }}
+                                >
+                                    Edit Achievement
+                                </Button>
+                            </Link>
                         </Grid>
 
                         <Grid xs={12}>
@@ -48,10 +69,12 @@ const ViewStep: NextPage = () => {
                             <ImageList />
                         </Grid>
 
+                        {/* height=720 is to be "Facebook" style. height=240 is more of a default landscape format */}
                         <Grid xs={12} style={{ marginTop: 20 }}>
                             <iframe
                                 width="100%"
                                 height="720"
+                                // height="240"
                                 src="https://www.youtube.com/embed/LcKnx7I97yk"
                                 frameBorder="0"
                                 data-allow="autoplay; encrypted-media"
@@ -60,13 +83,13 @@ const ViewStep: NextPage = () => {
                             </iframe>
                         </Grid>
 
-                        <Grid 
-                            xs={12} 
+                        <Grid
+                            xs={12}
                             style={{ display: "flex", marginTop: 20, marginBottom: 20 }}
                         >
-                            <Button 
-                                onClick={() => backRouter.back()} 
-                                variant="contained" 
+                            <Button
+                                onClick={() => backRouter.back()}
+                                variant="contained"
                                 style={{ marginLeft: "auto" }}
                             >
                                 Back to Profile

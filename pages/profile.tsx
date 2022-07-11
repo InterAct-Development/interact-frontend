@@ -1,14 +1,17 @@
-import React, { SetStateAction, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Link from "next/link";
+import { NextPage } from "next";
 import { apiRequest } from "../helpers/Requests";
 import { Body } from "../layout/Body";
 import { AppContext } from "../helpers/Context";
-import { NextPage } from "next";
 import { invalidToken, Middleware } from "../helpers/Middleware";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Avatar from "../components/avatar/Avatar";
 import VerticalLinearStepper from "../components/stepper/Stepper";
 import { BASE_URL } from "../helpers/Endpoints";
+import Button from "@mui/material/Button";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const Profile: NextPage = () => {
   const appContext = useContext(AppContext);
@@ -73,7 +76,34 @@ const Profile: NextPage = () => {
 
               <Grid xs={12} sx={{ marginTop: 5 }}>
                 <h2>Steps/Goals/Achievements</h2>
+
+                {/* Messy messy coding at the bottom with the grids just to make the button float right. Ignore it for now. It's temporary! */}
+                <Grid
+                  xs={12}
+                  style={{ display: "flex" }}
+                >
+                  <Link passHref href="/addStep">
+                    <Button
+                      variant="contained"
+                      style={{ marginLeft: "auto" }}
+                    >
+                      Add Achievement
+                    </Button>
+                  </Link>
+                </Grid>
+
                 <VerticalLinearStepper />
+              </Grid>
+
+              <Grid xs={12} style={{ marginTop: 5 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                  style={{ height: 100 }}
+                >
+                  Generate Certificate <PictureAsPdfIcon />
+                </Button>
               </Grid>
             </>
           </Grid>
