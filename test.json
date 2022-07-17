@@ -1,0 +1,61 @@
+{
+  "questions": [
+    {
+      "description": "this is a question?",
+      "answers": [
+        {
+          "title": "Answer 1",
+          "description": "This is the long description for Answer 1"
+        }
+      ]
+    },
+    {
+      "description": "this is a question 2?",
+      "answers": [
+        {
+          "title": "Answer 2",
+          "description": "This is the long description for Answer 2"
+        }
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "description": "this is a goal",
+      "answers": [
+        {
+          "title": "Answer 1",
+          "rating": 1
+        }
+      ],
+      "duringAnswers": [
+        {
+          "title": "During Answer 1",
+          "rating": 1
+        }
+      ]
+    },
+    {
+      "description": "this is a question 2?",
+      "answers": [
+        {
+          "title": "Answer 2",
+          "rating": 0
+        }
+      ],
+      "duringAnswers": [
+        {
+          "title": "During Answer 2",
+          "rating": 1
+        }
+      ]
+    }
+  ],
+  "pre-solved-mysteries": [
+    {
+      "your-version": "i did something",
+      "their-version": "they did som,egh",
+      "what-happened": "who cares"
+    }
+  ]
+}
