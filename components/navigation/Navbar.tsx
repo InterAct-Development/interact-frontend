@@ -1,6 +1,6 @@
-import Link from "next/link";
-import React, { useContext, useState } from "react";
-import { AppContext, ContextAction } from "../../helpers/Context";
+import Link from 'next/link';
+import React, { useContext, useState } from 'react';
+import { AppContext, ContextAction } from '../../helpers/Context';
 
 import {
   Button,
@@ -13,9 +13,9 @@ import {
   Select,
   SelectChangeEvent,
   FormControl,
-  MenuItem
-} from "@mui/material";
-import { LangContext, Languages } from "../../helpers/LanguageProvider";
+  MenuItem,
+} from '@mui/material';
+import { LangContext, Languages } from '../../helpers/LanguageProvider';
 
 const MaterialNav = () => {
   const appContext = useContext(AppContext);
@@ -29,10 +29,10 @@ const MaterialNav = () => {
       const value = e.target.value;
       switch (value) {
         case Languages.english:
-          setLocale(Languages.english)
+          setLocale(Languages.english);
           break;
         case Languages.french:
-          setLocale(Languages.french)
+          setLocale(Languages.french);
           break;
       }
     }
@@ -48,8 +48,7 @@ const MaterialNav = () => {
               inputProps={{ 'aria-label': 'Without label' }}
               value={locale}
               label="Language"
-              onChange={handleLocale}
-            >
+              onChange={handleLocale}>
               <MenuItem value={Languages.english}>English</MenuItem>
               <MenuItem value={Languages.french}>French</MenuItem>
             </Select>
@@ -60,7 +59,7 @@ const MaterialNav = () => {
           <Link passHref href="/">
             <Button color="inherit">Home</Button>
           </Link>
-          <Link passHref href="/pre-test">
+          <Link passHref href="/pre-test/pre-assessment">
             <Button color="inherit">Pre-Test</Button>
           </Link>
           {!auth && (
@@ -79,7 +78,9 @@ const MaterialNav = () => {
             </Link>
           )}
           {auth && (
-            <Button onClick={handleLogout} color="inherit">Logout</Button>
+            <Button onClick={handleLogout} color="inherit">
+              Logout
+            </Button>
           )}
         </Toolbar>
       </AppBar>
