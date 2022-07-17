@@ -14,10 +14,9 @@ export const CardNav: React.FC<Props> = ({ children, heading, items }) => {
     <div>
       {/* main nav */}
       <h6>{heading}</h6>
-      <h1>Test</h1>
       <div>
-        {items.map((items) => (
-          <div></div>
+        {items.map((items, i) => (
+          <div key={i}>{items}</div>
         ))}
       </div>
       {/*  sub nav */}

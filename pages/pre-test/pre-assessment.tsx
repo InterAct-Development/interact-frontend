@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useLocalizedFetch } from '../../helpers/hooks/LocalizedFetch';
 import { QUERY_ALL_STRAPI, STRAPI_URL } from '../../helpers/Endpoints';
+import { CardNav } from '../../components/navigation/CardNav';
 
 const PreAssessment: NextPage = () => {
     const [pageData] = useLocalizedFetch(
@@ -17,7 +18,11 @@ const PreAssessment: NextPage = () => {
     /// comes in as null
     /// we want -> if not null gra as d sb data.attributes
 
-    return <></>;
+    return(
+        <>
+        <CardNav heading="Heading" items={[]} />
+        </>
+    );
 };
 
 export default PreAssessment;

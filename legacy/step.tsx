@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 
 import { Body } from '../layout/Body';
-import ImageList from '../components/stepper/StepView/ImageList';
+import ImageList from './stepper/StepView/ImageList';
 
 import {
     Box,
