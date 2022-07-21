@@ -1,26 +1,29 @@
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { AppContext, ContextAction } from '../../helpers/Context';
-
 import {
-  Button,
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  makeStyles,
-  InputLabel,
   Select,
   SelectChangeEvent,
-  FormControl,
   MenuItem,
+  Avatar,
+  Typography,
+  AppBar,
+  Toolbar,
+  Divider,
+  IconButton
 } from '@mui/material';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { LangContext, Languages } from '../../helpers/LanguageProvider';
+import { useQuery } from 'react-query';
+import { STRAPI_URL } from '../../helpers/Endpoints';
 
-const MaterialNav = () => {
+const MaterialNav: React.FC = () => {
   const appContext = useContext(AppContext);
   const [locale, setLocale] = useContext(LangContext);
-  const { auth } = appContext.state;
 
   const handleLogout = () => appContext.dispatch({ type: ContextAction.Logout });
 
@@ -38,53 +41,37 @@ const MaterialNav = () => {
     }
   };
 
+
+
+  interface Locale {
+    name: string, code: string
+  }
+
+  const { data: availableLocales = [] } = useQuery(["localeList"], () => fetch(STRAPI_URL + '/api/i18n/locales').then(res =>
+    res.json() as unknown as Locale[]
+  ).then(res => { console.log(res); return res }))
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <FormControl variant="standard" sx={{ minWidth: 120 }}>
-            <Select
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-              value={locale}
-              label="Language"
-              onChange={handleLocale}>
-              <MenuItem value={Languages.english}>English</MenuItem>
-              <MenuItem value={Languages.french}>French</MenuItem>
-            </Select>
-          </FormControl>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            InterAct
-          </Typography>
-          <Link passHref href="/">
-            <Button color="inherit">Home</Button>
-          </Link>
-          <Link passHref href="/pre-test/pre-assessment">
-            <Button color="inherit">Pre-Test</Button>
-          </Link>
-          {!auth && (
-            <Link passHref href="/auth/login">
-              <Button color="inherit">Login</Button>
-            </Link>
-          )}
-          {!auth && (
-            <Link passHref href="/auth/register">
-              <Button color="inherit">Register</Button>
-            </Link>
-          )}
-          {auth && (
-            <Link passHref href="/profile">
-              <Button color="inherit">Profile</Button>
-            </Link>
-          )}
-          {auth && (
-            <Button onClick={handleLogout} color="inherit">
-              Logout
-            </Button>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static" component="nav">
+      <Toolbar>
+        <Avatar>
+          <PersonOutlineIcon />
+        </Avatar>
+        <Typography css={css`display:flex;`}>Before My Trip</Typography>
+        <Select
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+          value={locale}
+          label="Language"
+          onChange={handleLocale}>
+          {availableLocales.map(({ code, name }) => (<MenuItem value={code}>{name}</MenuItem>))}
+        </Select>
+        <IconButton onClick={handleLogout}>
+          <LogoutOutlinedIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+
   );
 };
 
