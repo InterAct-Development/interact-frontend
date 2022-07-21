@@ -2,7 +2,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext, ContextAction } from '../../helpers/Context';
 import {
   Select,
@@ -31,11 +31,11 @@ const MaterialNav: React.FC = () => {
     if (setLocale) {
       const value = e.target.value;
       switch (value) {
-        case Languages.english:
-          setLocale(Languages.english);
+        case Languages.ENGLISH:
+          setLocale(Languages.ENGLISH);
           break;
-        case Languages.french:
-          setLocale(Languages.french);
+        case Languages.FRENCH:
+          setLocale(Languages.FRENCH);
           break;
       }
     }
@@ -49,7 +49,7 @@ const MaterialNav: React.FC = () => {
 
   const { data: availableLocales = [] } = useQuery(["localeList"], () => fetch(STRAPI_URL + '/api/i18n/locales').then(res =>
     res.json() as unknown as Locale[]
-  ).then(res => { console.log(res); return res }))
+  ))
 
   return (
     <AppBar position="static" component="nav">
