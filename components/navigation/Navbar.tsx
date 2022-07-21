@@ -1,21 +1,18 @@
 import Link from 'next/link';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext, ContextAction } from '../../helpers/Context';
-
+import { LangContext, Languages } from '../../helpers/LanguageProvider';
 import {
   Button,
   AppBar,
   Box,
   Toolbar,
   Typography,
-  makeStyles,
-  InputLabel,
   Select,
   SelectChangeEvent,
   FormControl,
   MenuItem,
 } from '@mui/material';
-import { LangContext, Languages } from '../../helpers/LanguageProvider';
 
 const MaterialNav = () => {
   const appContext = useContext(AppContext);
@@ -28,11 +25,11 @@ const MaterialNav = () => {
     if (setLocale) {
       const value = e.target.value;
       switch (value) {
-        case Languages.english:
-          setLocale(Languages.english);
+        case Languages.ENGLISH:
+          setLocale(Languages.ENGLISH);
           break;
-        case Languages.french:
-          setLocale(Languages.french);
+        case Languages.FRENCH:
+          setLocale(Languages.FRENCH);
           break;
       }
     }
@@ -49,8 +46,8 @@ const MaterialNav = () => {
               value={locale}
               label="Language"
               onChange={handleLocale}>
-              <MenuItem value={Languages.english}>English</MenuItem>
-              <MenuItem value={Languages.french}>French</MenuItem>
+              <MenuItem value={Languages.ENGLISH}>English</MenuItem>
+              <MenuItem value={Languages.FRENCH}>French</MenuItem>
             </Select>
           </FormControl>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

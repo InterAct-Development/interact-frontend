@@ -8,11 +8,10 @@ const Home: NextPage = () => {
       <Body>
         <section>
           <h1>
-            Homepage
+            Home
           </h1>
         </section>
       </Body>
-
     </>
   );
 };

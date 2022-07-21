@@ -1,19 +1,16 @@
-import React, { useEffect, createContext, useState } from 'react'
-import { AppContext } from './Context'
+import React, { createContext, useState } from 'react'
 
-interface Props {
-
-}
+interface Props {}
 
 export enum Languages {
-    english = "en",
-    french = "fr"
+    ENGLISH = "en",
+    FRENCH = "fr"
 }
 
-export const LangContext = createContext<[Languages, React.Dispatch<React.SetStateAction<Languages>>?]>([Languages.english, undefined]);
+export const LangContext = createContext<[Languages, React.Dispatch<React.SetStateAction<Languages>>?]>([Languages.ENGLISH, undefined]);
 
 export const LanguageProvider: React.FC<Props> = ({ children }) => {
-    const [lang, setLang] = useState<Languages>(Languages.english)
+    const [lang, setLang] = useState<Languages>(Languages.ENGLISH);
     return (
         <LangContext.Provider value={[lang, setLang]}>
             {children}

@@ -1,5 +1,8 @@
 import { useState, useContext } from "react";
-import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import {
+  BottomNavigation as MuiBottomNav,
+  BottomNavigationAction as MuiBottomNavAction,
+} from "@mui/material";
 import { AppContext } from "../../helpers/Context";
 import { useRouter } from "next/router";
 import HouseRoundedIcon from "@mui/icons-material/HouseRounded";
@@ -8,6 +11,7 @@ import PersonAddAltRoundedIcon from "@mui/icons-material/PersonAddAltRounded";
 import FlightTakeoffRoundedIcon from "@mui/icons-material/FlightTakeoffRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import FlightLandRoundedIcon from "@mui/icons-material/FlightLandRounded";
+import { styled } from "@mui/material/styles";
 
 interface MenuItem {
   label: string;
@@ -18,7 +22,6 @@ interface MenuItem {
 interface BottomNavProps {}
 
 export const BottomNav: React.FC<BottomNavProps> = () => {
-  const [navIndex, setNavIndex] = useState(0);
   const appContext = useContext(AppContext);
   const { auth } = appContext.state;
 
@@ -58,21 +61,37 @@ export const BottomNav: React.FC<BottomNavProps> = () => {
     },
   ];
 
+  const BottomNavigationAction = styled(MuiBottomNavAction)(`
+    &.Mui-selected {
+    background: #3f50b5;
+    color: white;
+  }
+`);
+
+  const BottomNavigation = styled(MuiBottomNav)(`
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px 1px 15px 0px #0000004d;
+`);
+
   const router = useRouter();
-  
+  const currentRoute = router.pathname;
+
   const menu = (auth ? defaultMenu : authMenu).map((item, i) => (
-      <BottomNavigationAction 
-        key={i} 
-        label={item.label} 
-        icon={item.icon} 
-        onClick={() => router.push(item.route)}/>
+    <BottomNavigationAction
+      key={i}
+      value={item.route}
+      label={item.label}
+      icon={item.icon}
+      onClick={() => router.push(item.route)}
+    />
   ));
 
   return (
     <BottomNavigation
       showLabels
-      value={navIndex}
-      onChange={(event, newIndex) => setNavIndex(newIndex)}
+      value={currentRoute}
     >
       {menu}
     </BottomNavigation>
